@@ -1,0 +1,83 @@
+{
+  "projects" : [
+    {
+      "name" : "log4j2",
+      "path" : "projects_to_benchmark/logging-log4j2/log4j-perf",
+      "jmh_file" : "target/benchmarks.jar",
+      "benchmarks" : [
+        {
+          "name" : "AsyncAppenderLog4j2Benchmark",
+          "parameters" : [
+            {
+              "name" : "configFileName",
+              "type" : "category",
+              "values" : ["perf5AsyncApndNoLoc-noOpAppender.xml",
+                "perf5AsyncApndDsrptrNoLoc-noOpAppender.xml",
+                "perf5AsyncApndMpscQNoLoc-noOpAppender.xml",
+                "perf5AsyncApndXferQNoLoc-noOpAppender.xml"]
+            }
+          ]
+        },
+        {
+          "name" : "ThreadContextBenchmark",
+          "parameters" : [
+            {
+              "name" : "threadContextMapAlias",
+              "type" : "category",
+              "values" : ["Default", "CopyOpenHash", "CopySortedArray",
+                "NoGcOpenHash", "NoGcSortedArray"]
+            },
+            {
+              "name" : "count",
+              "type" : "range",
+              "min_val" : 5,
+              "max_val" : 1000
+            }
+          ]
+        },
+        {
+          "name" : "ConcurrentAsyncLoggerToFileBenchmark",
+          "parameters" : [
+            {
+              "name" : "queueFullPolicy",
+              "type" : "category",
+              "values" : ["ENQUEUE", "ENQUEUE_UNSYNCHRONIZED", "SYNCHRONOUS"]
+            },
+            {
+              "name" : "asyncLoggerType",
+              "type" : "category",
+              "values" : ["ASYNC_CONTEXT", "ASYNC_CONFIG"]
+            }
+          ]
+        },
+        {
+          "name" : "MDCFilterBenchmark",
+          "parameters" : [
+            {
+              "name" : "size",
+              "type" : "range",
+              "min_val" : 0,
+              "max_val" : 10
+            }          ]
+        },
+        {
+          "name" : "SortedArrayVsHashMapBenchmark",
+          "parameters" : [
+            {
+              "name" : "count",
+              "type" : "range",
+              "min_val" : 1,
+              "max_val" : 1000
+            },
+            {
+              "name" : "length",
+              "type" : "range",
+              "min_val" : 1,
+              "max_val" : 100
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "projects" : [
+    {
+      "name" : "jctools",
+      "path" : "projects_to_benchmark/JCTools/jctools-benchmarks",
+      "jmh_file" : "target/microbenchmarks.jar",
+      "benchmarks" : [
+        {
+          "name" : "throughput.QueueThroughputBackoffNone",
+          "parameters" : [
+            {
+              "name" : "qType",
+              "type" : "category",
+              "values" : ["SpscArrayQueue", "MpscArrayQueue", "SpmcArrayQueue", "MpmcArrayQueue"]
+            },
+            {
+              "name" : "qCapacity",
+              "type" : "range",
+              "min_val" : 10000,
+              "max_val" : 1000000
+            }
+          ]
+        },
+        {
+          "name" : "SetOps",
+          "parameters" : [
+            {
+              "name" : "type",
+              "type" : "category",
+              "values" : ["java.util.HashSet", "org.jctools.sets.OpenHashSet"]
+            },
+            {
+              "name" : "size",
+              "type" : "range",
+              "min_val" : 8,
+              "max_val" : 16384
+            },
+            {
+              "name" : "occupancy",
+              "type" : "range",
+              "min_val" : 8,
+              "max_val" : 16384
+            }
+          ]
+        },
+        {
+          "name" : "SpscChannelThroughputTest",
+          "parameters" : [
+            {
+              "name" : "capacity",
+              "type" : "range",
+              "min_val" : 10000,
+              "max_val" : 100000
+            }
+          ]
+        },
+        {
+          "name" : "QueueOfferPoll",
+          "parameters" : [
+            {
+              "name" : "qType",
+              "type" : "category",
+              "values" : ["SpscArrayQueue", "MpscArrayQueue", "SpmcArrayQueue", "MpmcArrayQueue"]
+            },
+            {
+              "name" : "burstSize",
+              "type" : "range",
+              "min_val" : 10,
+              "max_val" : 1000
+            },
+            {
+              "name" : "qCapacity",
+              "type" : "range",
+              "min_val" : 10000,
+              "max_val" : 1000000
+            }
+          ]
+        },
+        {
+          "name" : "channels.ChannelThroughputBackoffNone",
+          "parameters" : [
+            {
+              "name" : "type",
+              "type" : "category",
+              "values" : ["Spsc", "Mpsc"]
+            },
+            {
+              "name" : "capacity",
+              "type" : "range",
+              "min_val" : 10000,
+              "max_val" : 1000000
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

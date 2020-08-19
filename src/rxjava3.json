@@ -1,0 +1,84 @@
+{
+  "projects" : [
+    {
+      "name" : "rxjava",
+      "path" : "projects_to_benchmark/RxJava",
+      "jmh_file" : "build/libs/rxjava-3.0.0-SNAPSHOT-jmh.jar",
+      "benchmarks" : [
+        {
+          "name" : "ParallelPerf",
+          "parameters" : [
+            {
+              "name" : "count",
+              "type" : "range",
+              "min_val" : 1000,
+              "max_val" : 100000
+            },
+            {
+              "name" : "compute",
+              "type" : "range",
+              "min_val" : 1,
+              "max_val" : 10000
+            },
+            {
+              "name" : "parallelism",
+              "type" : "range",
+              "min_val" : 1,
+              "max_val" : 10
+            }
+          ]
+        },
+        {
+          "name" : "RangePerf",
+          "parameters" : [
+            {
+              "name" : "times",
+              "type" : "range",
+              "min_val" : 1,
+              "max_val" : 1000000
+            }
+          ]
+        },
+        {
+          "name" : "FlowableFlatMapCompletableSyncPerf",
+          "parameters" : [
+            {
+              "name" : "size",
+              "type" : "range",
+              "min_val" : 1,
+              "max_val" : 1000000
+            },
+            {
+              "name" : "maxConcurrency",
+              "type" : "range",
+              "min_val" : 1,
+              "max_val" : 1024
+            }
+          ]
+        },
+        {
+          "name" : "ObservableFlatMapMaybePerf",
+          "parameters" : [
+            {
+              "name" : "count",
+              "type" : "range",
+              "min_val" : 1,
+              "max_val" : 1000000
+            }
+          ]
+        },
+        {
+          "name" : "ObservableConcatMapSinglePerf",
+          "parameters" : [
+            {
+              "name" : "count",
+              "type" : "range",
+              "min_val" : 1,
+              "max_val" : 1000000
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

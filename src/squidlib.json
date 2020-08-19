@@ -1,0 +1,120 @@
+{
+  "projects" : [
+    {
+      "name" : "squidlib",
+      "path" : "SquidLib/squidlib-performance",
+      "jmh_file" : "target/benchmarks.jar",
+      "benchmarks" : [
+        {
+          "name" : "QueueThroughputBackoffNone",
+          "parameters" : [
+            {
+              "name" : "qType",
+              "type" : "category",
+              "values" : ["SpscArrayQueue", "MpscArrayQueue", "SpmcArrayQueue", "MpmcArrayQueue"]
+            },
+            {
+              "name" : "qCapacity",
+              "type" : "range",
+              "min_val" : 10000,
+              "max_val" : 1000000
+            }
+          ]
+        },
+        {
+          "name" : "SetOps",
+          "parameters" : [
+            {
+              "name" : "type",
+              "type" : "category",
+              "values" : ["java.util.HashSet", "org.jctools.sets.OpenHashSet"]
+            },
+            {
+              "name" : "size",
+              "type" : "range",
+              "min_val" : 8,
+              "max_val" : 16384
+            },
+            {
+              "name" : "occupancy",
+              "type" : "range",
+              "min_val" : 8,
+              "max_val" : 16384
+            }
+          ]
+        },
+        {
+          "name" : "MpqBurstCost",
+          "parameters" : [
+            {
+              "name" : "qType",
+              "type" : "category",
+              "values" : ["SpscArrayQueue", "MpscArrayQueue", "SpmcArrayQueue", "MpmcArrayQueue"]
+            },
+            {
+              "name" : "burstSize",
+              "type" : "range",
+              "min_val" : 10,
+              "max_val" : 1000
+            },
+            {
+              "name" : "consumerCount",
+              "type" : "range",
+              "min_val" : 1,
+              "max_val" : 10
+            },
+            {
+              "name" : "warmup",
+              "type" : "category",
+              "values" : ["true", "false"]
+            },
+            {
+              "name" : "qCapacity",
+              "type" : "range",
+              "min_val" : 10000,
+              "max_val" : 1000000
+            }
+          ]
+        },
+        {
+          "name" : "QueueOfferPoll",
+          "parameters" : [
+            {
+              "name" : "qType",
+              "type" : "category",
+              "values" : ["SpscArrayQueue", "MpscArrayQueue", "SpmcArrayQueue", "MpmcArrayQueue"]
+            },
+            {
+              "name" : "burstSize",
+              "type" : "range",
+              "min_val" : 10,
+              "max_val" : 1000
+            },
+            {
+              "name" : "qCapacity",
+              "type" : "range",
+              "min_val" : 10000,
+              "max_val" : 1000000
+            }
+          ]
+        },
+        {
+          "name" : "MpqDrainFillThroughputBackoffNone",
+          "parameters" : [
+            {
+              "name" : "qType",
+              "type" : "category",
+              "values" : ["SpscArrayQueue", "MpscArrayQueue", "SpmcArrayQueue", "MpmcArrayQueue"]
+            },
+            {
+              "name" : "qCapacity",
+              "type" : "range",
+              "min_val" : 10000,
+              "max_val" : 1000000
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
